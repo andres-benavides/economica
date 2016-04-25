@@ -13,6 +13,8 @@ and open the template in the editor.
     <script type="text/javascript" src="js/libs/jquery.js"></script>
     <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
     
+    <link rel="stylesheet" href="css/style.css" />
+    
     <!--FUNCIONES-->
     <script type="text/javascript" src="js/funciones.js"></script>
   </head>
@@ -31,7 +33,7 @@ and open the template in the editor.
         <div class="col-xs-5">
           <form class="form-horizontal">
             <div class="form-group">
-              <label class="col-sm-2 control-label">Nombre</label>
+              <label class="col-sm-2 control-label prb">Nombre</label>
               <div class="col-sm-7">
                 <input type="text" class="form-control" id="nombre" id="nombre" >
               </div>
@@ -68,7 +70,7 @@ and open the template in the editor.
               </div>
             </div>
             <div class="form-group">
-              <label  class="col-sm-2 control-label">Periodico vencido</label>
+              <label  class="col-sm-2 control-label">Periodico Vencido</label>
               <div class="col-sm-7">
                 <input type="text" class="form-control" id="pv" name="pv" >
               </div>
