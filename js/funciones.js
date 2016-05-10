@@ -2,20 +2,34 @@ $(document).ready(function () {
 
   //CLICK AL BOTON DE LA LINEA
   $(".bt-frm").click(function () {
+    var divtAmor = $("#selectAmor");
     var linea = $(this).attr("data-linea");
-    $("#amortizacion").empty();
+    $("#plazo").empty();
+    divtAmor.hide();
+    var selectAmor = $("#amortizacion");
+    selectAmor.empty();
     switch (linea) {
       case "1":
-        for (var k=6;k<=36;k++)
-        $("#amortizacion").append("<option value='" + k + "'>" + k + " Meses</option>");
+        for (var k=6;k<=36;k++){
+          $("#plazo").append("<option value='" + k + "'>" + k + " Meses</option>");
+        }
         break;
       case "2":
-        for (var k=1;k<=5;k++)
-        $("#amortizacion").append("<option value='" + (k*12) + "'>" + k + " Años</option>");
+        for (var k=1;k<=5;k++){
+          $("#plazo").append("<option value='" + (k*12) + "'>" + k + " Años</option>");
+        }
+        selectAmor.append("<option value='12'>Mensual</option>");
+        selectAmor.append("<option value='6'>Bimestral</option>");
+        selectAmor.append("<option value='4'>Trimestral</option>");
+        divtAmor.show();
         break;
       case "3":
-        for (var k=5;k<=10;k++)
-        $("#amortizacion").append("<option value='" + (k*12) + "'>" + k + " Años</option>");
+        for (var k=5;k<=10;k++){
+          $("#plazo").append("<option value='" + (k*12) + "'>" + k + " Años</option>");
+        }
+        selectAmor.append("<option value='4'>Trimestral</option>");
+        selectAmor.append("<option value='2'>Semestral</option>");
+        divtAmor.show();
         break;
     }
   });
@@ -36,11 +50,12 @@ $(document).ready(function () {
   };
   
   $("#ea").keyup(function (){
-    var ie = parseFloat($(this).val());
-    var dias =  parseFloat($("#amortizacion").val())*30;
-    var ip = ipEnFunEfAn(ie,dias);
- 
+    var ie = (parseFloat($(this).val()))/100;
+    var dias = 30;
+    console.log(dias);
+    var ip = ipEnFunEfAn(ie,dias)*100;
     $("#pv").val(ip);
+    $("#na").val(ip*12);
   });
   
 });

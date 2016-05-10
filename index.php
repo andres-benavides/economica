@@ -51,9 +51,15 @@ and open the template in the editor.
               </div>
             </div>
             <div class="form-group">
+              <label  class="col-sm-2 control-label">Plazo</label>
+              <div class="col-sm-7">
+                <select class="form-control" id="plazo" name="plazo" ></select>
+              </div>
+            </div>
+            <div class="form-group" id="selectAmor" style="display: none">
               <label  class="col-sm-2 control-label">Amortizacion</label>
               <div class="col-sm-7">
-                <select class="form-control" id="amortizacion" name="moamortizacionnto" ></select>
+                <select class="form-control" id="amortizacion" name="amortizacion" ></select>
               </div>
             </div>
             <h3>Tasa de interes</h3>
