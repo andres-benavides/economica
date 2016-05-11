@@ -10,13 +10,13 @@ $(document).ready(function () {
     selectAmor.empty();
     switch (linea) {
       case "1":
-        for (var k=6;k<=36;k++){
+        for (var k = 6; k <= 36; k++) {
           $("#plazo").append("<option value='" + k + "'>" + k + " Meses</option>");
         }
         break;
       case "2":
-        for (var k=1;k<=5;k++){
-          $("#plazo").append("<option value='" + (k*12) + "'>" + k + " Años</option>");
+        for (var k = 1; k <= 5; k++) {
+          $("#plazo").append("<option value='" + (k * 12) + "'>" + k + " Años</option>");
         }
         selectAmor.append("<option value='12'>Mensual</option>");
         selectAmor.append("<option value='6'>Bimestral</option>");
@@ -24,8 +24,8 @@ $(document).ready(function () {
         divtAmor.show();
         break;
       case "3":
-        for (var k=5;k<=10;k++){
-          $("#plazo").append("<option value='" + (k*12) + "'>" + k + " Años</option>");
+        for (var k = 5; k <= 10; k++) {
+          $("#plazo").append("<option value='" + (k * 12) + "'>" + k + " Años</option>");
         }
         selectAmor.append("<option value='4'>Trimestral</option>");
         selectAmor.append("<option value='2'>Semestral</option>");
@@ -34,30 +34,50 @@ $(document).ready(function () {
     }
   });
   //Cálculo del interés efectivo anual en función del interés periódico (ip) modalidad vencido:
-  var ie = function(ip,dias){
-    var inE = (Math.pow((1+ip),(360/dias)))-1;
+  var ie = function (ip, dias) {
+    var inE = (Math.pow((1 + ip), (360 / dias))) - 1;
     return inE;
   };
-//  Cálculo del interés periódico 
-  var ip = function(ia,periodos){
-    var inP = ia/periodos;
+//Cálculo del interés periódico 
+  var ip = function (ia, periodos) {
+    var inP = ia / periodos;
     return inP;
   };
   //Cálculo del interés periódico vencido (ip) en función del interés efectivo anual:
-  var ipEnFunEfAn = function(ie,dias){
-    var ipFea = (Math.pow((1+ie),(dias/360)))-1;
+  var ipEnFunEfAn = function (ie, dias) {
+    var ipFea = (Math.pow((1 + ie), (dias / 360))) - 1;
     return ipFea;
   };
-  
-  $("#ea").keyup(function (){
-    var ie = (parseFloat($(this).val()))/100;
+  //SI INGRESA EL EFECTIVO ANUAL
+  $("#ea").keyup(function () {
+    var ie = (parseFloat($(this).val())) / 100;
+    var dias = 30;
+    var periodos;
+    console.log(dias);
+    var ip = ipEnFunEfAn(ie, dias) * 100;
+    $("#pv").val(ip);
+    $("#na").val(ip * 12);
+  });
+  //SI INGRESA EL NOMINAL ANUAL
+  $("#na").keyup(function () {
+    var ie = (parseFloat($(this).val())) / 100;
     var dias = 30;
     console.log(dias);
-    var ip = ipEnFunEfAn(ie,dias)*100;
+    var ip = ipEnFunEfAn(ie, dias) * 100;
     $("#pv").val(ip);
-    $("#na").val(ip*12);
+    $("#na").val(ip * 12);
   });
-  
+    //SI INGRESA EL PERIODICO
+  $("#pv").keyup(function () {
+    var ie = (parseFloat($(this).val())) / 100;
+    var dias = 30;
+    console.log(dias);
+    var ip = ipEnFunEfAn(ie, dias) * 100;
+    $("#pv").val(ip);
+    $("#na").val(ip * 12);
+  });
+
+
 });
 
 
