@@ -12,6 +12,7 @@ and open the template in the editor.
 
     <script type="text/javascript" src="js/libs/jquery.js"></script>
     <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/libs/prettify.js"></script>
     
     <link rel="stylesheet" href="css/style.css" />
     
@@ -31,7 +32,7 @@ and open the template in the editor.
       <br />
       <div class="row" id="linea">
         <div class="col-xs-5">
-          <form class="form-horizontal">
+          <form class="form-horizontal" id="frm">
             <div class="form-group">
               <label class="col-sm-2 control-label prb">Nombre</label>
               <div class="col-sm-7">
@@ -82,6 +83,29 @@ and open the template in the editor.
               </div>
             </div>
           </form>
+          <div>
+            <button class="btn btn-success" id="calcular">Calcular</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <table class="table" id="tabla">
+            <thead>
+              <tr>
+                <th>cuota</th>
+                <th>fecha</th>
+                <th>Saldo Capital</th>
+                <th>Amortizacion</th>
+                <th>Intereses</th>
+                <th>Seguro de vida</th>
+                <th>Flujo de caja</th>
+              </tr>
+            </thead>
+            <tbody id="datosTabla">
+              
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
