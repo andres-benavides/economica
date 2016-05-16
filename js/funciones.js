@@ -37,6 +37,7 @@ $(document).ready(function () {
     switch (linea) {
       case "1":
         myLinea = 1;
+        $("#cuoFija").hide()
         $("#plazo").append("<option value=''>SELECCIONE</option>");
         for (var k = 6; k <= 36; k++) {
           $("#plazo").append("<option value='" + k + "'>" + k + " Meses</option>");
@@ -44,6 +45,7 @@ $(document).ready(function () {
         break;
       case "2":
         myLinea = 2;
+        $("#cuoFija").show()
         for (var k = 1; k <= 5; k++) {
           $("#plazo").append("<option value='" + (k * 12) + "'>" + k + " Años</option>");
         }
@@ -55,6 +57,7 @@ $(document).ready(function () {
         break;
       case "3":
         myLinea = 3;
+        $("#cuoFija").show()
         for (var k = 5; k <= 10; k++) {
           $("#plazo").append("<option value='" + (k * 12) + "'>" + k + " Años</option>");
         }
@@ -146,7 +149,12 @@ $(document).ready(function () {
         var int = currency(value.interes);
         var seg = currency(value.seguro);
         var fc = currency(value.flujoDeCaja);
-        datos += "<tr><td>" + key + "</td><td>" + fh + "</td><td>" + sc + "</td><td>" + amo + "</td><td>" + int + "</td><td>" + seg + "</td><td>" + fc + "</td><tr>";
+        if(myLinea==1){
+          datos += "<tr><td>" + key + "</td><td>" + fh + "</td><td>" + sc + "</td><td>" + amo + "</td><td>" + int + "</td><td>" + seg + "</td><td>" + fc + "</td><tr>";
+        }else{
+          var cu = currency(value.cuota);
+          datos += "<tr><td>" + key + "</td><td>" + fh + "</td><td>" + sc + "</td><td>" + amo + "</td><td>" + int + "</td><td>" + cu + "</td><td>" + seg + "</td><td>" + fc + "</td><tr>";
+        }
       });
       $("#datosTabla").append(datos);
     });

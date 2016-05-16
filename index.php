@@ -98,6 +98,7 @@ and open the template in the editor.
                 <th>Saldo Capital</th>
                 <th>Amortizacion</th>
                 <th>Intereses</th>
+                <th id="cuoFija" style="display: none">Cuota Fija</th>
                 <th>Seguro de vida</th>
                 <th>Flujo de caja</th>
               </tr>
