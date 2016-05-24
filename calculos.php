@@ -34,7 +34,7 @@ $monto = $varPos['monto'];
 $interesIp = $varPos['pv'] / 100;
 $totalMeses = $varPos['totalMeses'];
 $seguro = $varPos['seguro'];
-$amortizacion = $varPos['amortizacion'];
+$amortizacion = (isset($varPos['amortizacion']))?$varPos['amortizacion']:"";
 if ($linea == 1) {
   $tabla = array();
   $amortizacion = 0;
@@ -61,6 +61,39 @@ if ($linea == 1) {
   echo json_encode($tabla);
 }
 if ($linea == 2) {
+  $tabla = array();
+  $n = $totalMeses / $amortizacion;
+  $mesesSum = $amortizacion;
+  $valorAmort = 0;
+  $interes = 0;
+  $saldoCapital = $monto;
+  $hoy = date("m/d/Y");
+  $fecha = $hoy;
+  $cuota = 0;
+  for ($i = 0; $i < (($totalMeses/$amortizacion) + 1); $i++) {
+    $flugoDeCaja = $valorAmort + $interes + $seguro;
+    $cuotaArr['fecha'] = $fecha;
+    $cuotaArr['saldoCapital'] = round($saldoCapital, 2);
+    $cuotaArr['amortizacion'] = round($valorAmort, 2);
+    $cuotaArr['interes'] = round($interes, 2);
+    $cuotaArr['cuota'] = round($cuota, 2);
+    $cuotaArr['seguro'] = round($seguro, 2);
+    $cuotaArr['flujoDeCaja'] = round($flugoDeCaja, 2);
+    array_push($tabla, $cuotaArr);
+
+    $fecha = date("m/d/Y", strtotime("$fecha +$mesesSum month"));
+    
+    $cuota = cuota($monto, $interesIp, $n);
+    $interes = $saldoCapital * $interesIp;
+    
+    $valorAmort = $cuota - $interes;
+    
+    $saldoCapital = $saldoCapital - $valorAmort;
+    $seguro = seguro($saldoCapital);
+  }
+  echo json_encode($tabla);
+}
+if ($linea == 3) {
   $tabla = array();
   $n = $totalMeses / $amortizacion;
   $mesesSum = $amortizacion;

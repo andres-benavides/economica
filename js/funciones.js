@@ -68,6 +68,7 @@ $(document).ready(function () {
         break;
     }
   });
+  
   //ASIGNAR EL VALOR DE LOS NUMEROS DE PERIODOS SI NO SELECCIONA LINEA ESTANDAR
   $("#amortizacion").change(function () {
     var plazo = $("#plazo").val();
@@ -75,7 +76,6 @@ $(document).ready(function () {
     numPeriodos = plazo / amortizacion;
     periodosParaIp = 12 / amortizacion;
     dias = amortizacion * 30;
-    console.log(numPeriodos);
   });
   //ASIGNAR EL VALOR DE LOS NUMEROS DE PERIODOS SI  SELECCIONA LINEA ESTANDAR
   var lineStd = function () {
@@ -161,5 +161,3 @@ $(document).ready(function () {
   });
 
 });
-
-
