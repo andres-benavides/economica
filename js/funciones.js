@@ -54,6 +54,7 @@ $(document).ready(function () {
         selectAmor.append("<option value='2'>Bimestral</option>");
         selectAmor.append("<option value='3'>Trimestral</option>");
         divtAmor.show();
+        totalMeses = $("#plazo").val();
         break;
       case "3":
         myLinea = 3;
@@ -65,10 +66,11 @@ $(document).ready(function () {
         selectAmor.append("<option value='3'>Trimestral</option>");
         selectAmor.append("<option value='6'>Semestral</option>");
         divtAmor.show();
+        totalMeses = $("#plazo").val();
         break;
     }
   });
-  
+
   //ASIGNAR EL VALOR DE LOS NUMEROS DE PERIODOS SI NO SELECCIONA LINEA ESTANDAR
   $("#amortizacion").change(function () {
     var plazo = $("#plazo").val();
@@ -78,6 +80,7 @@ $(document).ready(function () {
     dias = amortizacion * 30;
   });
   //ASIGNAR EL VALOR DE LOS NUMEROS DE PERIODOS SI  SELECCIONA LINEA ESTANDAR
+
   var lineStd = function () {
     var esLineaEstand = $('#amortizacion option').length;
     totalMeses = $("#plazo").val();
@@ -149,9 +152,9 @@ $(document).ready(function () {
         var int = currency(value.interes);
         var seg = currency(value.seguro);
         var fc = currency(value.flujoDeCaja);
-        if(myLinea==1){
+        if (myLinea == 1) {
           datos += "<tr><td>" + key + "</td><td>" + fh + "</td><td>" + sc + "</td><td>" + amo + "</td><td>" + int + "</td><td>" + seg + "</td><td>" + fc + "</td><tr>";
-        }else{
+        } else {
           var cu = currency(value.cuota);
           datos += "<tr><td>" + key + "</td><td>" + fh + "</td><td>" + sc + "</td><td>" + amo + "</td><td>" + int + "</td><td>" + cu + "</td><td>" + seg + "</td><td>" + fc + "</td><tr>";
         }

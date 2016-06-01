@@ -25,6 +25,7 @@ function seguro($monto) {
  * @return Int El valor de la cuota
  */
 function cuota($monto, $ip, $n) {
+//  echo " $monto $ip $n";
   $valorCuota = ($monto * ((pow(1 + $ip, $n)) * $ip)) / (pow(1 + $ip, $n)-(1));
   return $valorCuota;
 }
@@ -62,6 +63,7 @@ if ($linea == 1) {
 }
 if ($linea == 2) {
   $tabla = array();
+//  echo "$totalMeses $amortizacion ANDRESSSSSSS";
   $n = $totalMeses / $amortizacion;
   $mesesSum = $amortizacion;
   $valorAmort = 0;
@@ -96,6 +98,12 @@ if ($linea == 2) {
 if ($linea == 3) {
   $tabla = array();
   $n = $totalMeses / $amortizacion;
+  if($amortizacion==3){
+    $n = $n-8;
+  }else if($amortizacion==6){
+    $n = $n-4;
+  }
+  
   $mesesSum = $amortizacion;
   $valorAmort = 0;
   $interes = 0;
@@ -116,12 +124,28 @@ if ($linea == 3) {
 
     $fecha = date("m/d/Y", strtotime("$fecha +$mesesSum month"));
     
-    $cuota = cuota($monto, $interesIp, $n);
+    
+    
     $interes = $saldoCapital * $interesIp;
     
-    $valorAmort = $cuota - $interes;
+    if($amortizacion==3){
+      //$n = $n-8;
+      if($i>7){
+        $cuota = cuota($monto, $interesIp, $n);
+        $valorAmort = $cuota - $interes;
+        $saldoCapital = $saldoCapital - $valorAmort;
+      }
+    }
+    if($amortizacion==6){
+      //$n = $n-4;
+      if($i>3){
+        $cuota = cuota($monto, $interesIp, $n);
+        $valorAmort = $cuota - $interes;
+        $saldoCapital = $saldoCapital - $valorAmort;
+      }
+    }
     
-    $saldoCapital = $saldoCapital - $valorAmort;
+    
     $seguro = seguro($saldoCapital);
   }
   echo json_encode($tabla);
